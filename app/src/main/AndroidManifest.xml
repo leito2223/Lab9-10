@@ -9,7 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.AddUpdAlumnosActivity"></activity>
+        <activity
+            android:name=".AddUpdCursos"
+            android:label="@string/title_activity_add_upd_cursos"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Activity.Cursos"
+            android:label="@string/title_activity_cursos"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Activity.AddUpdAlumnosActivity" />
         <activity android:name=".Activity.AlumnosActivity" />
         <activity
             android:name=".MainActivity"
