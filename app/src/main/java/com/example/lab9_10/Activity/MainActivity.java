@@ -1,5 +1,6 @@
-package com.example.lab9_10;
+package com.example.lab9_10.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.example.lab9_10.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -81,9 +84,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.alumnos) {
-            // Handle the camera action
+           Intent intent = new Intent(this,AlumnosActivity.class);
+           startActivity(intent);
         } else if (id == R.id.cursos) {
-
+            Intent intent = new Intent(this,Cursos.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
