@@ -18,7 +18,7 @@ public class Cursos extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.addBtnC);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
