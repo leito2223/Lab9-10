@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class controlSQL extends SQLiteOpenHelper {
 
     String sqlAlumno= "CREATE TABLE IF NOT EXISTS Alumno (idAlumno TEXT PRIMARY KEY, nombre TEXT,apellido TEXT,edad INTEGER)";
-    String sqlCurso= "CREATE TABLE IF NOT EXISTS Curso (id TEXT PRIMARY KEY, descripcion TEXT,creditos INTEGER,idAlumno TEXT)";
+    String sqlCurso= "CREATE TABLE IF NOT EXISTS Curso (id TEXT PRIMARY KEY, descripcion TEXT,creditos INTEGER,idAlumno TEXT,FOREIGN KEY(idAlumno) REFERENCES Alumno(idAlumno))";
 
     public controlSQL(Context context) {
-        super(context, "labBD.txt" , null, 1);
+        super(context, "labBD.sql" , null, 1);
     }
 
 
