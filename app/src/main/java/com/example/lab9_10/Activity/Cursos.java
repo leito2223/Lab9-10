@@ -57,8 +57,6 @@ public class Cursos extends AppCompatActivity implements RecyclerItemTouchHelper
         mRecyclerView = findViewById(R.id.recycler_cursosFld);
         CursoList = new ArrayList<>();
         model = new controlSQL(this);
-        Curso curso = new Curso("1","SS",3,"1");
-        model.insertCurso(curso);
         CursoList = model.listaCursos();
         mAdapter = new CursoAdapter(CursoList, this);
         coordinatorLayout = findViewById(R.id.coordinator_layoutC);
@@ -101,7 +99,7 @@ public class Cursos extends AppCompatActivity implements RecyclerItemTouchHelper
             if (viewHolder instanceof CursoAdapter.MyViewHolder) {
                 // get the removed item name to display it in snack bar
                 String name = CursoList.get(viewHolder.getAdapterPosition()).getDescripcion();
-
+                model.deleteCurso(CursoList.get(viewHolder.getAdapterPosition()).getId());
                 // save the index deleted
                 final int deletedIndex = viewHolder.getAdapterPosition();
                 // remove the item from recyclerView
@@ -204,7 +202,6 @@ public class Cursos extends AppCompatActivity implements RecyclerItemTouchHelper
         }
     }
 
-
     private void checkIntentInformation() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -213,28 +210,21 @@ public class Cursos extends AppCompatActivity implements RecyclerItemTouchHelper
             if (aux == null) {
                 aux = (Curso) getIntent().getSerializableExtra("editCurso");
                 if (aux != null) {
-                    //found an item that can be updated
-                    boolean founded = false;
-                    for (Curso Curso : CursoList) {
-                        if (Curso.getId().equals(aux.getId())) {
-                            Curso.setDescripcion(aux.getDescripcion());
-                            Curso.setCreditos(aux.getCreditos());
-                            Curso.setIdAlumno(aux.getIdAlumno());
-                            founded = true;
-                            break;
-                        }
-                    }
-                    //check if exist
-                    if (founded) {
-                        Toast.makeText(getApplicationContext(), aux.getDescripcion() + " editado correctamente", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), aux.getDescripcion() + " no encontrado", Toast.LENGTH_LONG).show();
-                    }
+                    model.updateCurso(aux);
+                   CursoList = model.listaCursos();
+                    mAdapter = new CursoAdapter(CursoList, this);
+                    mRecyclerView.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(), aux.getDescripcion() + " editado correctamente", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                //found a new Curso Object
-                CursoList.add(aux);
+            }else{
+                model.insertCurso(aux);
+                CursoList = model.listaCursos();
+                mAdapter = new CursoAdapter(CursoList, this);
+                mRecyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), aux.getDescripcion() + " agregado correctamente", Toast.LENGTH_LONG).show();
+
             }
         }
     }
