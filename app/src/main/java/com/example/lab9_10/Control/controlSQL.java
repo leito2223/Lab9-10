@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class controlSQL extends SQLiteOpenHelper {
 
     String sqlAlumno= "CREATE TABLE IF NOT EXISTS Alumno (idAlumno TEXT PRIMARY KEY, nombre TEXT,apellido TEXT,edad INTEGER)";
-    String sqlCurso= "CREATE TABLE  Curso (id TEXT PRIMARY KEY, descripcion TEXT,creditos INTEGER,idAlumno TEXT)";
+    String sqlCurso= "CREATE TABLE IF NOT EXISTS Curso (id TEXT PRIMARY KEY, descripcion TEXT,creditos INTEGER,idAlumno TEXT)";
 
     public controlSQL(Context context) {
-        super(context, "labBD.db" , null, 1);
+        super(context, "labBD.txt" , null, 1);
     }
 
 
@@ -46,10 +46,10 @@ public class controlSQL extends SQLiteOpenHelper {
     public boolean insertCurso (Curso curso) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("id", curso.getId());
-        contentValues.put("descripcion", curso.getDescripcion());
         contentValues.put("creditos", curso.getCreditos());
         contentValues.put("idAlumno", curso.getIdAlumno());
+        contentValues.put("id", curso.getId());
+        contentValues.put("descripcion", curso.getDescripcion());
         db.insert("Curso", null, contentValues);
         return true;
     }

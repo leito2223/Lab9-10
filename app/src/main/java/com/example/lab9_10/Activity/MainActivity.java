@@ -27,25 +27,13 @@ import com.example.lab9_10.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    controlSQL control ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        control = new controlSQL(this);
-        try
-        {
-            Curso curso = new Curso("1","SS",3,"1");
-           // control.insertCurso(curso);
-            Log.w("Lista: ",control.listaAlumnos().toString());
-
-        }catch (Exception m)
-        {
-            Toast.makeText(this,m.getMessage(),Toast.LENGTH_SHORT);
-        }
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
