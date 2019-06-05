@@ -31,6 +31,7 @@ import com.example.lab9_10.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AlumnosActivity extends AppCompatActivity implements RecyclerItemTouchHelper.RecyclerItemTouchHelperListener, AlumnoAdapter.AlumnoAdapterListener {
 
@@ -46,11 +47,11 @@ public class AlumnosActivity extends AppCompatActivity implements RecyclerItemTo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alumnos);
-        Toolbar toolbar = findViewById(R.id.toolbarA);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar1 = findViewById(R.id.toolbarA);
+//        setSupportActionBar(toolbar1);
 
         //toolbar fancy stuff
-        getSupportActionBar().setTitle(getString(R.string.my_alumno));
+        Objects.requireNonNull(getSupportActionBar()).setTitle(getString(R.string.my_alumno));
 
         mRecyclerView = findViewById(R.id.recycler_alumno);
         alumnoList = new ArrayList<>();
@@ -59,6 +60,9 @@ public class AlumnosActivity extends AppCompatActivity implements RecyclerItemTo
         mAdapter = new AlumnoAdapter(alumnoList, this);
         coordinatorLayout = findViewById(R.id.coordinator_layoutAlumno);
 
+       // Alumno alumno = new Alumno("1","Leonardo","Arce",18);
+       // model.insertAlumno(alumno);
+        alumnoList = model.listaAlumnos();
         // white background notification bar
         whiteNotificationBar(mRecyclerView);
 
