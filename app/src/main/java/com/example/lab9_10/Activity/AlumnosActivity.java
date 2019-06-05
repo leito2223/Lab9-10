@@ -101,6 +101,7 @@ public class AlumnosActivity extends AppCompatActivity implements RecyclerItemTo
             if (viewHolder instanceof AlumnoAdapter.MyViewHolder) {
                 // get the removed item name to display it in snack bar
                 String name = alumnoList.get(viewHolder.getAdapterPosition()).getNombre();
+                model.deleteAlumno(alumnoList.get(viewHolder.getAdapterPosition()).getIdAlumno());
 
                 // save the index deleted
                 final int deletedIndex = viewHolder.getAdapterPosition();
@@ -209,46 +210,33 @@ public class AlumnosActivity extends AppCompatActivity implements RecyclerItemTo
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             Alumno aux;
-            aux = (Alumno) getIntent().getSerializableExtra("addalumno");
+            aux = (Alumno) getIntent().getSerializableExtra("addAlumno");
             if (aux == null) {
-                aux = (Alumno) getIntent().getSerializableExtra("editalumno");
+                aux = (Alumno) getIntent().getSerializableExtra("editAlumno");
                 if (aux != null) {
-                    //found an item that can be updated
-                    boolean founded = false;
-                    for (Alumno alumno : alumnoList) {
-                        if (alumno.getIdAlumno().equals(aux.getIdAlumno())) {
-                            alumno.setNombre(aux.getNombre());
-                            alumno.setApellido(aux.getApellido());
-                            alumno.setEdad(aux.getEdad());
-                            founded = true;
-                            break;
-                        }
-                    }
-                    //check if exist
-                    if (founded) {
-                        Toast.makeText(getApplicationContext(), aux.getNombre() + " editado correctamente", Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), aux.getNombre() + " no encontrado", Toast.LENGTH_LONG).show();
-                    }
+                    model.updateAlumno(aux);
+                    alumnoList = model.listaAlumnos();
+                    mAdapter = new AlumnoAdapter(alumnoList, this);
+                    mRecyclerView.setAdapter(mAdapter);
+                    mAdapter.notifyDataSetChanged();
+                    Toast.makeText(getApplicationContext(), aux.getNombre() + " editado correctamente", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                //found a new Alumno Object
-                alumnoList.add(aux);
+            }else{
+                model.insertAlumno(aux);
+                alumnoList = model.listaAlumnos();
+                mAdapter = new AlumnoAdapter(alumnoList, this);
+                mRecyclerView.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
                 Toast.makeText(getApplicationContext(), aux.getNombre() + " agregado correctamente", Toast.LENGTH_LONG).show();
+
             }
         }
     }
 
     private void goToAddUpdAlumno() {
-        SharedPreferences prefs = this.getSharedPreferences(getString(R.string.preference_user_key), Context.MODE_PRIVATE);
-        String defaultValue = getResources().getString(R.string.preference_user_key_default);
-        String privilegio = prefs.getString(getString(R.string.preference_user_key), defaultValue);
-        if (privilegio.compareTo("administrador") == 0) {
             Intent intent = new Intent(this, AddUpdAlumnosActivity.class);
             intent.putExtra("editable", false);
             startActivity(intent);
-        } else
-            Toast.makeText(getApplicationContext(), "Necesita permisos de administrador", Toast.LENGTH_LONG).show();
     }
 
     @Override
