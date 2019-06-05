@@ -74,7 +74,7 @@ public class AlumnoAdapter extends RecyclerView.Adapter<AlumnoAdapter.MyViewHold
         final Alumno alumno = alumnoListFiltered.get(position);
         holder.titulo1.setText(alumno.getIdAlumno());
         holder.titulo2.setText(alumno.getNombre());
-        holder.description.setText(alumno.getEdad());
+        holder.description.setText(String.valueOf(alumno.getEdad()));
     }
 
 

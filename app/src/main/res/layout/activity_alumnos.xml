@@ -1,29 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/coordinator_layoutAlumno"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.AlumnosActivity">
+    tools:context="com.example.lab9_10.Activity.AlumnosActivity">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        tools:ignore="MissingConstraints">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarA"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/white"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    </android.support.design.widget.AppBarLayout>
-
-    <include
-        layout="@layout/content_alumnos"/>
+    <include layout="@layout/content_alumnos" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/addBtnA"
@@ -31,22 +17,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
         android:src="@drawable/ic_add_black_24dp"
         android:tint="@android:color/background_light"
-        app:backgroundTint="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.976"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.948"
-        tools:ignore="MissingConstraints" />
+        app:backgroundTint="@color/colorPrimaryDark" />
 
+</android.support.design.widget.CoordinatorLayout>
 
-</android.support.constraint.ConstraintLayout>

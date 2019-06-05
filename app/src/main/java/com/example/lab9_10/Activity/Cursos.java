@@ -57,8 +57,8 @@ public class Cursos extends AppCompatActivity implements RecyclerItemTouchHelper
         mRecyclerView = findViewById(R.id.recycler_cursosFld);
         CursoList = new ArrayList<>();
         model = new controlSQL(this);
-        Curso curso = new Curso("1","SS",3,"1");
-        model.insertCurso(curso);
+      //  Curso curso = new Curso("1","SS",3,"1");
+       // model.insertCurso(curso);
         CursoList = model.listaCursos();
         mAdapter = new CursoAdapter(CursoList, this);
         coordinatorLayout = findViewById(R.id.coordinator_layoutC);
