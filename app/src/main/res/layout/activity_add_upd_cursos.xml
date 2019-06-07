@@ -64,13 +64,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/alumnoAddUpdCur"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="ID Alumno"
-                android:inputType="textPersonName" />
+                android:text="SELECCIONE EL ID DEL ALUMNO:"
+                android:textStyle="bold|italic" />
+            <Spinner
+                android:id="@+id/id_AlumnoSP"
+                android:layout_width="300dp"
+                android:layout_height="60dp"
+                android:layout_below="@+id/direccion"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="50dp"
+                android:background="@drawable/spinnerdesign"
+                android:padding="20dp"
+                android:paddingLeft="70dp" />
         </android.support.design.widget.TextInputLayout>
 
 
